@@ -1,10 +1,8 @@
 package controller;
 
-import executor.Broker;
 import executor.Executor;
 import executor.TaskQueue;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import task.TaskExample;
 
 @org.springframework.context.annotation.Configuration

@@ -7,15 +7,17 @@ public class Executor extends Thread {
 
     private TaskQueue taskQueue;
     private Archive archive;
-    private Pair<String,Runnable> task;
+    private Pair<String, Runnable> task;
+    private boolean flag;
 
     public Executor(TaskQueue taskQueue, Archive archive) {
         this.taskQueue = taskQueue;
         this.archive = archive;
+        flag = true;
     }
 
     public void run() {
-        while (true) {
+        while (flag) {
             try {
                 task = taskQueue.getTask();
             } catch (InterruptedException e) {
@@ -34,5 +36,13 @@ public class Executor extends Thread {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void stopLoop() {
+        flag = false;
+    }
+
+    public void runLoop() {
+        flag = true;
     }
 }
