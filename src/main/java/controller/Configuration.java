@@ -8,18 +8,18 @@ import task.TaskExample;
 @org.springframework.context.annotation.Configuration
 public class Configuration {
     @Bean
-    public Archive getArchive() {
-        return new Archive();
+    public MemoryArchive getArchive() {
+        return new MemoryArchive();
     }
 
     @Bean
-    public TaskQueue getTaskQueue(Archive archive) {
+    public TaskQueue getTaskQueue(MemoryArchive archive) {
         return new TaskQueue(archive);
     }
 
     @Bean
-    public Executor getExecutor(Archive archive, TaskQueue taskQueue) {
-        Executor executor = new Executor(taskQueue, archive);
+    public Executor getExecutor(MemoryArchive archive, TaskQueue taskQueue) {
+        Executor executor = new Executor(taskQueue);
         executor.start();
         return executor;
     }

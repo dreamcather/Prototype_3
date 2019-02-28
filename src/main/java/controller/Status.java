@@ -1,21 +1,18 @@
 package controller;
 
+
 public class Status {
     private String status;
 
     Status() {
-        status = "in queue";
+        status = "InQueue";
     }
 
-    public void delivered() {
-        status ="delivered";
+    public void change(String status) {
+        this.status = status;
     }
 
-    public void done() {
-        status ="done";
-    }
-
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 }

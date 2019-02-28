@@ -19,13 +19,13 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/command")
 public class RequestControler {
-    Archive archive;
+    MemoryArchive archive;
     TaskQueue taskQueue;
     TaskExample taskExample;
     Executor executor;
 
     @Autowired
-    public RequestControler(Archive archive, TaskQueue taskQueue, TaskExample taskExample, Executor executor) {
+    public RequestControler(MemoryArchive archive, TaskQueue taskQueue, TaskExample taskExample, Executor executor) {
         this.archive = archive;
         this.taskQueue = taskQueue;
         this.executor = executor;

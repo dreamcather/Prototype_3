@@ -1,18 +1,15 @@
 package executor;
 
-import controller.Archive;
 import javafx.util.Pair;
 
 public class Executor extends Thread {
 
     private TaskQueue taskQueue;
-    private Archive archive;
     private Pair<String, Runnable> task;
     private boolean flag;
 
-    public Executor(TaskQueue taskQueue, Archive archive) {
+    public Executor(TaskQueue taskQueue) {
         this.taskQueue = taskQueue;
-        this.archive = archive;
         flag = true;
     }
 
@@ -31,7 +28,6 @@ public class Executor extends Thread {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                archive.done(task.getKey());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
