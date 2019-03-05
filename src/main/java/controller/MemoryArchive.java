@@ -31,6 +31,6 @@ public class MemoryArchive implements Archive {
 
     @Override
     public void changeStatus(String id,String status) {
-        statusMap.get(id).change();
+        statusMap.get(id).change(status);
     }
 }

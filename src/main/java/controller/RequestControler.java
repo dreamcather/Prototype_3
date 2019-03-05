@@ -1,6 +1,5 @@
 package controller;
 
-import executor.Executor;
 import executor.TaskQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,20 +21,19 @@ public class RequestControler {
     MemoryArchive archive;
     TaskQueue taskQueue;
     TaskExample taskExample;
-    Executor executor;
 
     @Autowired
-    public RequestControler(MemoryArchive archive, TaskQueue taskQueue, TaskExample taskExample, Executor executor) {
+    public RequestControler(MemoryArchive archive, TaskQueue taskQueue, TaskExample taskExample) {
         this.archive = archive;
         this.taskQueue = taskQueue;
-        this.executor = executor;
         this.taskExample = taskExample;
+        taskQueue.start();
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> sendRequest() throws IOException, InterruptedException {
-        String id = taskQueue.addTask(() -> taskExample.WriteA("additional"));
+        String id = taskQueue.put(() -> taskExample.WriteA("additional"));
         return ResponseEntity.status(HttpStatus.OK).body("Id " + id);
     }
 

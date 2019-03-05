@@ -5,6 +5,11 @@ public class TaskExample {
     }
 
     public String WriteA(String additioanal) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("A "+ additioanal);
         return "";
     }
